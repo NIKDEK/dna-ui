@@ -124,13 +124,16 @@ class task:
 
     def get_cmd_output(self):
         cmd_result = requests.get(f'{self.base_url}/api/v1/file/{self.file_id}', headers=header)
-        res = cmd_result.json()[0]['commandResponses']['SUCCESS'][self.lst_command]
-        print(res)
-        if self.save == True:
-            with open('interactions.json', 'w') as fl:
-                self.temp.append(res)
-                fl.write(json.dumps(self.temp))
-                fl.close()
+        try:
+            res = cmd_result.json()[0]['commandResponses']['SUCCESS'][self.lst_command]
+            print(res)
+            if self.save == True:
+                with open('interactions.json', 'w') as fl:
+                    self.temp.append(res)
+                    fl.write(json.dumps(self.temp))
+                    fl.close()
+        except:
+            print(f'Something went wrong, Status Code: {cmd_result.status_code}')
         self.cmd_run()
 
 
