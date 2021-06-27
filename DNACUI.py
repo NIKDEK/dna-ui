@@ -138,4 +138,4 @@ if __name__ == "__main__":
 #    list_interfaces('5d6dd65b-eb43-4e28-bd31-e6b0730b2ac5')
 #    print(get_token())
 #    print(available_commands())
-    task('https://sandboxdnac.cisco.com').cmd_run()
+    task(f'https://{DNAC_IP}').cmd_run()
